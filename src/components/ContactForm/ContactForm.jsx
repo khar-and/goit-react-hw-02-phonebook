@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 import { nanoid } from 'nanoid';
 
 export default class ContactForm extends Component {
-  state = { name: '' };
+  state = {
+    name: '',
+    number: '',
+  };
 
   // Generate random ID
   nameIdInput = nanoid();
@@ -16,8 +19,8 @@ export default class ContactForm extends Component {
 
   handleSubmitForm = evt => {
     evt.preventDefault();
-    this.props.onSubmit({ name: this.state.name });
-    this.setState({ name: '' });
+    this.props.onSubmit({ name: this.state.name, number: this.state.number });
+    this.setState({ name: '', number: '' });
   };
 
   render() {
@@ -35,7 +38,18 @@ export default class ContactForm extends Component {
             onChange={this.handleChangeInput}
           />
         </label>
-
+        <label htmlFor={this.numberIdInput}>
+          Number{' '}
+          <input
+            type="tel"
+            name="number"
+            pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+            title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+            value={this.state.number}
+            required
+            onChange={this.handleChangeInput}
+          />
+        </label>
         <button type="submit">Add contact</button>
       </form>
     );
