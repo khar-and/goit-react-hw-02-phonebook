@@ -3,6 +3,7 @@ import ContactForm from './ContactForm/ContactForm';
 import ContactList from './ContactList/ContactList';
 import { nanoid } from 'nanoid';
 import Filter from './Filter/Filter';
+import { MainTitle, Title } from './App.styled';
 
 export default class App extends Component {
   state = {
@@ -51,16 +52,15 @@ export default class App extends Component {
     const filteredContacts = this.getFilteredContacts();
     return (
       <div>
-        <p>Phonebook</p>
+        <MainTitle>Phonebook</MainTitle>
         <ContactForm onSubmit={this.addContactWithForm} />
         <Filter value={filter} onChangeFilter={this.changeFilter} />
-        <p>Contacts</p>
-        <ul>
-          <ContactList
-            contacts={filteredContacts}
-            onDeleteContact={this.deleteContact}
-          />
-        </ul>
+        <Title>Contacts</Title>
+
+        <ContactList
+          contacts={filteredContacts}
+          onDeleteContact={this.deleteContact}
+        />
       </div>
     );
   }
