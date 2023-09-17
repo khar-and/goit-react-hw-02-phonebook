@@ -36,4 +36,5 @@ export const Button = styled.button`
   &:hover {
     color: red;
     scale: 1.1;
+  }
 `;
